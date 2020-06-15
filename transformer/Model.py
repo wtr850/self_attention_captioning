@@ -49,7 +49,7 @@ class Encoder(nn.Module):
             for _ in range(n_layers)])
         
         
-    def forward(self, images, src_mask,  return_attns=False):
+    def forward(self, images, src_mask=None, return_attns=False):
 
         enc_slf_attn_list = []
         
@@ -78,7 +78,7 @@ class Decoder(nn.Module):
             for _ in range(n_layers)])
         self.layer_norm = nn.LayerNorm(d_model, eps=1e-6)
         
-    def forward(self, trg_seq, trg_mask, enc_output, src_mask, return_attns=False):
+    def forward(self, enc_output, trg_seq=30, trg_mask=None, src_mask=None, return_attns=False):
 
         dec_slf_attn_list, dec_enc_attn_list = [], []
 
